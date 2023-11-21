@@ -1,0 +1,71 @@
+{
+  "name": "smaht-higlass-misc",
+  "version": "0.1.0",
+  "description": "HiGlass tracks for one-off use cases",
+  "keywords": [
+    "HiGlass",
+    "Track"
+  ],
+  "author": "Alexander Veit",
+  "license": "MIT",
+  "contributors": [
+    {
+      "name": "Alexander Veit",
+      "url": "http://github.com/alexander-veit"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/smaht-dac/higlass-misc.git"
+  },
+  "main": "src/index.js",
+  "unpkg": "dist/smaht-higlass-misc.min.js",
+  "module": "./es",
+  "files": [
+    "dist",
+    "es"
+  ],
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.11.1",
+    "before-build-webpack": "^0.2.11",
+    "file-loader": "^1.1.11",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^4.5.2",
+    "prettier": "^2.1.2",
+    "slugid": "^2.0.0",
+    "string-replace-loader": "^2.2.0",
+    "style-loader": "^0.20.3",
+    "threads-plugin": "^1.4.0",
+    "terser-webpack-plugin": "^4.0.1",
+    "unminified-webpack-plugin": "^2.0.0",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^4.0.0",
+    "webpack-dev-server": "^3.1.1",
+    "webpack-plugin-replace": "^1.2.0"
+  },
+  "scripts": {
+    "build-es": "rm -rf ./es/* && npx babel ./src/ --out-dir ./es/ --env-name esm",
+    "build": "npm run build-es && webpack --mode production",
+    "start": "webpack serve --mode development -c webpack.config.js",
+    "prerelease": "rm -rf dist/*; npm run build; zip -r dist.zip dist"
+  },
+  "dependencies": {
+    "d3-array": "^2.3.1",
+    "d3-dsv": "^1.1.1",
+    "d3-format": "^3.0.1",
+    "d3-request": "^1.0.6",
+    "d3-scale": "^3.0.1",
+    "higlass-register": "^0.1.0",
+    "threads": "v1.7.0"
+
+  },
+  "peerDependencies": {
+    "react": "^16.6.3 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.6.3 || ^17.0.0 || ^18.0.0"
+  }
+}

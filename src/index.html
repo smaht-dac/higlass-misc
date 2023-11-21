@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="author" content="Alexander Veit">
+  <meta name="description" content="A plugin track to display cohort data in HiGlass">
+  <meta name="keywords" content="HiGlass, Plugin Tracks">
+
+  <title>HiGlass Tracks</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+  <style type="text/css">
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    #demo {
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
+      /* bottom: 1rem; */
+      right: 1rem;
+      height: 48rem;
+    }
+  </style>
+
+<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<script crossorigin src="https://unpkg.com/pixi.js-legacy@5/dist/pixi-legacy.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-bootstrap/0.32.1/react-bootstrap.min.js"></script>
+</head>
+<body>
+  <div id="demo"></div>
+</body>
+<!-- <script crossorigin src="https://unpkg.com/higlass-bigwig-datafetcher@0.1.2/dist/higlass-bigwig-datafetcher.min.js"></script> -->
+<script crossorigin src="https://unpkg.com/higlass-sequence/dist/higlass-sequence.js"></script>
+<script crossorigin src="https://unpkg.com/higlass-transcripts/dist/higlass-transcripts.js"></script>
+<script crossorigin src="https://unpkg.com/higlass-text/dist/higlass-text.js"></script>
+
+
+<script crossorigin src="https://unpkg.com/higlass@1.12.4/dist/hglib.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/higlass@1.12.4/dist/hglib.css">
+<!-- <link rel="stylesheet" href="https://aveit-tibanna-wolf.s3.amazonaws.com/higlass/hglib.develop.css">
+<script crossorigin src="https://aveit-tibanna-wolf.s3.amazonaws.com/higlass/hglib.develop.min.js"></script> -->
+
+<script type="module">
+  
+const testViewConfig =
+{
+  "editable": true,
+  "trackSourceServers": [
+    "https://cgap-higlass.com/api/v1"
+  ],
+  "exportViewUrl": "/api/v1/viewconfs",
+  "views": [
+    {
+
+      //"initialXDomain": [10000000, 10050000],
+      "initialXDomain": [1254410.4166073129,
+        1255600.4198227832],
+
+
+
+      "initialYDomain": [
+        180520.26598912096,
+        180863.4346387336
+      ],
+      "genomePositionSearchBox": {
+        "visible": true,
+        "chromInfoId": "hg38",
+        "autocompleteId": "P0PLbQMwTYGy-5uPIQid7A",
+        "chromInfoServer": "https://cgap-higlass.com/api/v1",
+        "autocompleteServer": "https://cgap-higlass.com/api/v1"
+      },
+      "autocompleteSource": "/api/v1/suggest/?d=OHJakQICQD6gTD7skx4EWA&",
+      "chromInfoPath": "//s3.amazonaws.com/pkerp/data/hg38/chromSizes.tsv",
+      "tracks": {
+        "top": [
+        {
+            "filetype": "beddb",
+            "server": "//higlass.io/api/v1",
+            "tilesetUid": "P0PLbQMwTYGy-5uPIQid7A",
+            "uid": "XqQSTD5HRUeiN7w9ZafWLg",
+            "type": "gene-annotations",
+            "options": {
+              "fontSize": 10,
+              "labelColor": "black",
+              "labelBackgroundColor": "#ffffff",
+              "labelPosition": "hidden",
+              "labelLeftMargin": 0,
+              "labelRightMargin": 0,
+              "labelTopMargin": 0,
+              "labelBottomMargin": 0,
+              "minHeight": 24,
+              "plusStrandColor": "blue",
+              "minusStrandColor": "red",
+              "trackBorderWidth": 0,
+              "trackBorderColor": "black",
+              "showMousePosition": false,
+              "mousePositionColor": "#000000",
+              "geneAnnotationHeight": 16,
+              "geneLabelPosition": "outside",
+              "geneStrandSpacing": 4,
+              "name": "Gene Annotations (hg38)"
+            },
+            "width": 90,
+            "height": 90
+          },
+          // {
+          //   "uid": "texttrack_transcripts",
+          //   "type": "text",
+          //   "width": 568,
+          //   "height": 20,
+          //   "server": "https://cgap-higlass.com/api/v1",
+          //   "options": {
+          //     "text": "Canonical transcripts",
+          //     "align": "left",
+          //     "offsetY": 4,
+          //     "fontSize": 11,
+          //     "textColor": "#333333",
+          //     "fontFamily": "Arial",
+          //     "fontWeight": "normal",
+          //     "backgroundColor": "#ededed"
+          //   }
+          // },
+          // {
+          //   "uid": "emptytrack_transcripts",
+          //   "type": "empty",
+          //   "width": 568,
+          //   "height": 10,
+          //   "options": {}
+          // },
+          // {
+          //   "uid": "transcript_annotation2",
+          //   "type": "horizontal-transcripts",
+          //   "width": 768,
+          //   "height": 45,
+          //   "server": "https://cgap-higlass.com/api/v1",
+          //   "options": {
+          //     "name": "Gene transcripts",
+          //     "fontSize": 9,
+          //     "maxTexts": 100,
+          //     "utrColor": "#C0EAAF",
+          //     "minHeight": 24,
+          //     "fontFamily": "Helvetica",
+          //     "sequenceData": {
+          //       "type": "fasta",
+          //       "faiUrl": "https://cgap-higlass.s3.amazonaws.com/sequence/hg38.fa.fai",
+          //       "fastaUrl": "https://cgap-higlass.s3.amazonaws.com/sequence/hg38.fa",
+          //       "chromSizesUrl": "https://cgap-higlass.s3.amazonaws.com/sequence/hg38.mod.chrom.sizes"
+          //     },
+          //     "labelFontColor": "#222222",
+          //     "startCollapsed": false,
+          //     "plusStrandColor": "#bdbfff",
+          //     "minusStrandColor": "#fabec2",
+          //     "transcriptHeight": 12,
+          //     "transcriptSpacing": 2,
+          //     "mousePositionColor": "#000000",
+          //     "trackHeightAdjustment": null,
+          //     "showToggleTranscriptsButton": false,
+          //     "labelBackgroundPlusStrandColor": "#e9e9e9",
+          //     "labelBackgroundMinusStrandColor": "#e9e9e9",
+          //     "labelStrokePlusStrandColor": "#999999",
+          //     "labelStrokeMinusStrandColor": "#999999",
+          //     "backgroundColor": "#ffffff"
+          //   },
+          //   "tilesetUid": "canonical_transcripts_hg38"
+          // },
+          
+          {
+            "uid": "AdlJsUYFRzuJRZyYeKDX2A",
+            "type": "chromosome-labels",
+            "width": 811,
+            "height": 30,
+            "server": "//higlass.io/api/v1",
+            "options": {
+              "color": "#808080",
+              "stroke": "#ffffff",
+              "fontSize": 12,
+              "fontIsLeftAligned": false,
+              "showMousePosition": false,
+              "mousePositionColor": "#000000"
+            },
+            "filetype": "chromsizes-tsv",
+            "tilesetUid": "NyITQvZsS_mOFNlz5C2LJg"
+          },
+          {
+            "uid": "empty",
+            "type": "empty",
+            "width": 811,
+            "height": 10,
+            "tilesetUid": "empty"
+          },
+          {
+            "uid": "texttrack_genelist",
+            "type": "text",
+            "width": 568,
+            "height": 20,
+            "server": "https://cgap-higlass.com/api/v1",
+            "options": {
+              "text": "Gene-based association tests",
+              "align": "left",
+              "offsetY": 3,
+              "fontSize": 12,
+              "textColor": "#333333",
+              "fontFamily": "Arial",
+              "fontWeight": "bold",
+              "backgroundColor": "#ededed"
+            }
+          },
+          {
+            "uid": "emptytrack_genelist",
+            "type": "empty",
+            "width": 568,
+            "height": 10,
+            "options": {}
+          },
+
+          //UDN
+          {
+            "type": "scannerResult",
+            "options": {
+              //"includedGenes": ['ENSG00000186092','ENSG00000188976','ENSG00000131584']
+              "infoFields":[
+                {
+                  "name": "END",
+                  "type": "int"
+                },
+                {
+                  "name": "SYMBOL",
+                  "type": "string"
+                },
+                {
+                  "name": "go_terms",
+                  "type": "string_list"
+                },
+                {
+                  "name": "kegg_category",
+                  "type": "string_list"
+                },
+                {
+                  "name": "DeNovoWEST_pvalue",
+                  "type": "float"
+                },
+                {
+                  "name": "biallelic_pvalue",
+                  "type": "float"
+                },
+              ],
+              "yValue": {
+                "field": "rdr",
+              },
+              "significanceTreshold": 1.3,
+              "yAxisLabel": {
+                "visible": true,
+                "text": "RDR",
+              },
+              "chromSizesUrl": "https://aveit.s3.amazonaws.com/higlass/data/sequence/hg38.mod.chrom.sizes",
+              "data":[
+                ["chr1", 10027, 870642, 0, 0, 0, 0.258, 0.602, "5823PFC-B"],
+                ["chr1", 870643, 974114, 0, 0, 0, 0.002, 0.0, "5823PFC-B"],
+                ["chr1", 974115, 1080276, 0, 0, 0, 0.102, 0.10, "5823PFC-B"]
+              ]
+              // "filter": [
+              //   {
+              //     "field": "kegg_category",
+              //     "operator": "has_one_of",
+              //     "target": ["signal_transduction"]
+              //   }
+              // ],
+            },
+            "height": 120,
+            "uid": "FylkvVBTSumyJ959HT3-5B",
+            
+            "width": 450
+          },
+          
+        
+          
+          
+        ],
+        "left": [],
+        "center": [],
+        "bottom": [],
+        "right": [],
+        "whole": [],
+        "gallery": []
+      },
+      "layout": {
+        "w": 12,
+        "h": 6,
+        "x": 0,
+        "y": 0
+      },
+      "uid": "WdlA7F8aTY2gXQzPGiBlwQ"
+    }
+  ],
+  "zoomLocks": {
+    "locksByViewUid": {},
+    "locksDict": {}
+  },
+  "locationLocks": {
+    "locksByViewUid": {},
+    "locksDict": {}
+  },
+  "valueScaleLocks": {
+    "locksByViewUid": {},
+    "locksDict": {}
+  }
+}
+
+window.hglib.viewer(
+  document.getElementById('demo'),
+  testViewConfig,
+  {
+    bounded: true,
+  },
+);
+</script>
+</html>

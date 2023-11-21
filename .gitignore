@@ -1,0 +1,17 @@
+test_html
+*.un~
+*.swp
+*.swo
+node_modules
+scripts/*.vcf
+scripts/*.gz
+scripts/*.tbi
+scripts/*.txt
+scripts/*.bed
+scripts/*.bw
+dist
+es
+*.zip
+*.log
+*.DS_cache
+*.DS_Store
