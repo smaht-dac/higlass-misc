@@ -50,7 +50,6 @@ function ScannerResultTrack(HGC, ...args) {
       this.chromSizes = {};
       this.chomSizesLoaded = false;
       this.hasRerenderBeenTriggered = false;
-      this.chromInfo = null;
 
       if (options.chromSizesUrl) {
         this.chromSizes[options.chromSizesUrl] =
@@ -67,6 +66,7 @@ function ScannerResultTrack(HGC, ...args) {
         this.loadingText.text = 'Loading...';
         this.chomSizesLoaded = true;
         this.chromInfo = chromInfo;
+        console.log(this.chromInfo, chromInfo);
         if (this.hasRerenderBeenTriggered) {
           this.rerender(options);
         }
@@ -132,6 +132,7 @@ function ScannerResultTrack(HGC, ...args) {
       this.loadingText.text = 'Parsing data...';
 
       this.data = [];
+      console.log(this.chromInfo);
 
       this.options.data.forEach((d) => {
         const chr = d[0];
