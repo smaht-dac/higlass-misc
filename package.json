@@ -1,6 +1,6 @@
 {
   "name": "smaht-higlass-misc",
-  "version": "0.1.0",
+  "version": "0.1.0-beta.0",
   "description": "HiGlass tracks for one-off use cases",
   "keywords": [
     "HiGlass",
@@ -62,7 +62,6 @@
     "d3-scale": "^3.0.1",
     "higlass-register": "^0.1.0",
     "threads": "v1.7.0"
-
   },
   "peerDependencies": {
     "react": "^16.6.3 || ^17.0.0 || ^18.0.0",
