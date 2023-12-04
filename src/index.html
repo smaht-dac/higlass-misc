@@ -221,46 +221,21 @@ const testViewConfig =
           {
             "type": "scannerResult",
             "options": {
-              //"includedGenes": ['ENSG00000186092','ENSG00000188976','ENSG00000131584']
-              "infoFields":[
-                {
-                  "name": "END",
-                  "type": "int"
-                },
-                {
-                  "name": "SYMBOL",
-                  "type": "string"
-                },
-                {
-                  "name": "go_terms",
-                  "type": "string_list"
-                },
-                {
-                  "name": "kegg_category",
-                  "type": "string_list"
-                },
-                {
-                  "name": "DeNovoWEST_pvalue",
-                  "type": "float"
-                },
-                {
-                  "name": "biallelic_pvalue",
-                  "type": "float"
-                },
-              ],
-              "yValue": {
-                "field": "rdr",
-              },
-              "significanceTreshold": 1.3,
+   
+              "show_total_cn": true,
+              "yValue": "rdr",
+              "segmentColor": '#ff0000',
+              "snpColor": '#cfcfcf',
+              "segmentHeight": 9,
               "yAxisLabel": {
                 "visible": true,
                 "text": "RDR",
               },
               "chromSizesUrl": "https://aveit.s3.amazonaws.com/higlass/data/sequence/hg38.mod.chrom.sizes",
               "data":[
-                ["chr1", 10027, 870642, 0, 0, 0, 0.258, 0.602, "5823PFC-B"],
-                ["chr1", 870643, 974114, 0, 0, 0, 0.002, 0.0, "5823PFC-B"],
-                ["chr1", 974115, 1080276, 0, 0, 0, 0.102, 0.10, "5823PFC-B"]
+                ["chr1", 10027, 870642, 0, 0, 0, 0.5, 0.602, "5823PFC-B"],
+                ["chr1", 870643, 974114, 0, 0, 0, 0.0, 0.0, "5823PFC-B"],
+                ["chr1", 974115, 1080276, 0, 0, 0, 1.0, 0.10, "5823PFC-B"]
               ]
               // "filter": [
               //   {

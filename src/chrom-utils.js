@@ -5,8 +5,7 @@ import { tsvParseRows } from 'd3-dsv';
 const chromInfoBisector = bisector((d) => d.pos).left;
 
 export const chrToAbs = (chrom, chromPos, chromInfo) => {
-  console.log(chrom, chromPos);
-  chromInfo.chrPositions[chrom].pos + chromPos;
+  return chromInfo.chrPositions[chrom].pos + chromPos;
 }
 
 const absToChr = (absPosition, chromInfo) => {
